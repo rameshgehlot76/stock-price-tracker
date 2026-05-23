@@ -1,10 +1,14 @@
 # 📈 StockLens — Real-Time Stock Price Tracker
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=flat&logo=flask&logoColor=white)
-![Plotly](https://img.shields.io/badge/Plotly-Interactive_Charts-3F4F75?style=flat&logo=plotly&logoColor=white)
-![yfinance](https://img.shields.io/badge/yfinance-Live_Data-purple?style=flat)
-![Status](https://img.shields.io/badge/Status-Active-00e676?style=flat)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=for-the-badge&logo=flask&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-Charts-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![yfinance](https://img.shields.io/badge/yfinance-Live_Data-6C3483?style=for-the-badge&logo=yahoo&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active-00C853?style=for-the-badge)
+
+
+
 
 A clean, production-ready stock market tracker built with Flask and Python. Get real-time prices, interactive 30-day charts, and 7-day moving averages for any Indian or US stock — right in your browser.
 
@@ -24,7 +28,7 @@ A clean, production-ready stock market tracker built with Flask and Python. Get 
 - ⚡ **Loading spinner** — smooth UX while fetching data
 - 🛡️ **Error handling** — clean messages for invalid symbols
 - 📱 **Fully responsive** — works on mobile, tablet and desktop
-- 🎨 **Premium dark UI** — Cabinet Grotesk + Inter + JetBrains Mono fonts  
+- 🎨 **Premium dark UI** — Cabinet Grotesk + Inter + JetBrains Mono fonts
 
 ---
 
