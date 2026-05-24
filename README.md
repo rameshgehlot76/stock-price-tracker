@@ -18,7 +18,7 @@ A clean, production-ready stock market tracker built with Flask and Python. Get 
 
 > Search any stock symbol → Get live price, day high/low, prev close, change % and an interactive chart instantly.
 
-![StockLens Preview](assets/preview.png) 
+![StockLens Preview](https://raw.githubusercontent.com/rameshgehlot76/stock-price-tracker/main/assets/preview.png) 
 
 ---
 
