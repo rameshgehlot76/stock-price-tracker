@@ -1,4 +1,4 @@
-| [📈 StockLens](https://github.com/rameshgehlot76/stock-price-tracker) 🌐 [Live](https://stocklens-qbtn.onrender.com) | Real-time stock tracker with interactive charts & moving averages | Python, Flask, yfinance, Plotly, pandas |
+# 📈 StockLens — Real-Time Stock Price Tracker
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=for-the-badge&logo=flask&logoColor=white)
@@ -6,9 +6,6 @@
 ![Pandas](https://img.shields.io/badge/Pandas-Data-150458?style=for-the-badge&logo=pandas&logoColor=white)
 ![yfinance](https://img.shields.io/badge/yfinance-Live_Data-6C3483?style=for-the-badge&logo=yahoo&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-00C853?style=for-the-badge)
-
-
-
 
 A clean, production-ready stock market tracker built with Flask and Python. Get real-time prices, interactive 30-day charts, and 7-day moving averages for any Indian or US stock — right in your browser.
 
