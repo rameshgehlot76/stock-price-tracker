@@ -2,5 +2,7 @@ flask
 yfinance
 pandas
 plotly 
+gunicorn
+
 
 

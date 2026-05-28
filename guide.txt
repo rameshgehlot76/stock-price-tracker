@@ -1,0 +1,148 @@
+StockLens
+Real-Time Stock Price Tracker
+Complete Interview Preparation Guide
+Built by Ramesh  |  github.com/rameshgehlot76
+
+1. Project Overview
+StockLens is a real-time stock market tracking web application built with Python and Flask. 
+Users can search for any Indian or US stock symbol and instantly see the live current price, 
+day high/low, previous close, percentage change, and an interactive 30-day price history chart with a 7-day moving average line.
+
+One-line description for interviews:
+"I built a full-stack Python web app that fetches real-time stock market data using the yfinance API, 
+processes it with pandas, visualizes it using interactive Plotly charts, 
+and serves it through a Flask web server with Jinja2 templating."
+
+2. Tech Stack — Deep Explanation
+
+Technology	Used For	Why This Choice
+Python	Core programming language	Industry standard for data and backend development
+Flask	Web framework — routes, templates, server	Lightweight, beginner-friendly, perfect for small web apps
+yfinance	Fetch real stock data from Yahoo Finance	Free, no API key required, returns clean pandas DataFrames
+pandas	Process and manipulate stock data tables	Industry standard for data processing in Python
+Plotly	Draw interactive charts	Creates zoom/hover charts — much better UX than matplotlib
+Jinja2	Render dynamic HTML templates	Built into Flask, lets Python variables show in HTML
+HTML + CSS	Frontend user interface	Custom dark UI with premium fonts — Cabinet Grotesk, Inter 
+
+3. How It Works — Full Flow
+
+Step-by-step explanation of what happens when a user searches for a stock:
+
+Step 1 — User Input: User types a stock symbol (e.g. TCS.NS) and clicks Search.
+Step 2 — Flask receives POST request: app.py receives the form data, validates the symbol (checks for empty, too long, or invalid characters).
+Step 3 — yfinance API call: stock_data.py creates a yf.Ticker object and calls stock.info to get price data and stock.history(period='1mo') for 30 days of history.
+Step 4 — pandas processes data: The history comes back as a pandas DataFrame. We use .rolling(window=7).mean() to calculate the 7-day moving average.
+Step 5 — Plotly creates chart: create_chart() builds an interactive line chart with the close price and moving average, then converts it to HTML using fig.to_html(full_html=False).
+Step 6 — Flask renders template: render_template('index.html', data=data, chart=chart) sends everything to Jinja2 which fills in the HTML placeholders.
+Step 7 — User sees results: The browser displays live price, stats, and interactive chart. The page title also updates to show the company name.
+
+4. Key Concepts to Know
+
+What is yfinance?
+yfinance is a Python library that wraps Yahoo Finance's API. It gives you free access to real-time and historical stock market data without needing any API key. You create a Ticker object with a symbol, then call .info for current data and .history() for historical prices. The data comes back as a pandas DataFrame — a 2D table with dates as rows and OHLCV (Open, High, Low, Close, Volume) as columns.
+
+What is a DataFrame?
+A DataFrame is a 2D table data structure from the pandas library — think of it like an Excel spreadsheet in Python. It has rows and columns, supports powerful operations like filtering, grouping, rolling averages, and can be created from JSON, CSV, or API responses. In this project, stock price history comes back as a DataFrame with dates as the index and price columns.
+
+What is a Moving Average?
+A moving average smooths out price fluctuations by averaging the last N days of prices. A 7-day moving average means for each day, we take the average of the previous 7 days' closing prices. This helps identify the overall trend — if the price line is above the MA line, the stock is trending up. In pandas: history['Close'].rolling(window=7).mean()
+
+What is Flask?
+Flask is a lightweight Python web framework that handles HTTP requests and responses. It uses decorators like @app.route('/') to map URLs to Python functions. When a user visits a URL, Flask calls the matching function and returns the result as HTML. It uses Jinja2 for templating — embedding Python variables directly inside HTML files using {{ variable }} syntax.
+
+GET vs POST requests
+GET is used to retrieve data — when user first opens the page. POST is used to send data — when user submits the search form. In this project, the route handles both: GET shows the empty search page, POST receives the stock symbol, fetches data, and returns the results page. request.form['symbol'] reads the submitted form value.
+
+What is Plotly?
+Plotly is a Python visualization library that creates interactive charts. Unlike matplotlib which creates static images, Plotly charts are HTML/JavaScript-based — users can zoom in, hover to see exact values, and pan across the chart. fig.to_html(full_html=False) converts the chart to an HTML string that we embed directly inside the Jinja2 template using {{ chart | safe }}.
+
+What is Jinja2?
+Jinja2 is a templating engine built into Flask. It lets you write HTML files with special placeholders like {{ data.price }} for variables and {% if data.error %} for logic. When Flask calls render_template(), Jinja2 replaces all placeholders with real values and returns the final HTML to the browser.
+
+5. Interview Questions & Answers
+
+Basic Questions
+
+Q: Tell me about this project.
+A: I built StockLens — a real-time stock market tracker using Python and Flask. Users can search for any Indian or US stock symbol and see the live price, day high/low, previous close, percentage change, and an interactive 30-day chart with a 7-day moving average. I used yfinance to fetch real market data, pandas to process it, Plotly for interactive charts, and Flask with Jinja2 for the web interface.
+
+Q: Why did you build this project?
+A: I wanted to build a project that combines real-world API integration, data processing, and web development — all skills that are directly relevant to backend and data engineering roles. Stock data is also a great use case because it's live, structured, and visually compelling. It also gave me hands-on experience with pandas DataFrames which are used heavily in data science and ML roles.
+
+Q: What API did you use and why?
+A: I used yfinance — Yahoo Finance's Python library. I chose it because it's completely free, requires no API key, and returns data as clean pandas DataFrames which are easy to process. It supports both Indian NSE stocks (by adding .NS suffix) and US stocks out of the box.
+
+Q: How do you handle Indian stocks vs US stocks?
+A: For Indian stocks listed on NSE, yfinance requires the .NS suffix after the symbol — for example TCS becomes TCS.NS and Infosys becomes INFY.NS. For US stocks like Apple or Google, you just use AAPL or GOOGL directly. I added this hint in the UI so users know the format.
+
+Technical Questions
+
+Q: What is a DataFrame and how did you use it?
+A: A DataFrame is a 2D table data structure from the pandas library — like an Excel spreadsheet in Python with rows and columns. yfinance returns stock history as a DataFrame with dates as the index and Open, High, Low, Close, Volume as columns. I used the Close column to plot the price chart and applied .rolling(window=7).mean() to calculate the 7-day moving average.
+
+Q: How did you calculate the moving average?
+A: Using pandas rolling window: history['Close'].rolling(window=7).mean(). The rolling() function creates a sliding window of 7 days and .mean() calculates the average for each window. This gives a smooth trend line — the first 6 days have NaN values since there aren't enough data points yet, which Plotly handles gracefully by simply not plotting those points.
+
+Q: Why Plotly over Matplotlib?
+A: Plotly creates interactive charts — users can zoom in, hover over data points to see exact values, and pan across the chart. Matplotlib creates static images that can't be interacted with. For a web app where user experience matters, Plotly is much better. Also, fig.to_html(full_html=False) gives me an HTML string I can embed directly in the template without saving any image files.
+
+Q: What is the difference between Flask and FastAPI?
+A: Both are Python web frameworks. Flask is older, simpler, and better for small web apps with HTML templates — it uses Jinja2 for rendering pages. FastAPI is newer, faster, async-first, and better for building REST APIs — it has automatic documentation via Swagger UI and uses Pydantic for data validation. For this project I used Flask because it's simpler and I needed HTML template rendering, not just JSON APIs.
+
+Q: How does the form submission work?
+A: The HTML form has method='POST' which sends the symbol input to the Flask route. In app.py, the @app.route() decorator handles both GET and POST. When method is POST, I read the symbol using request.form.get('symbol'), validate it, fetch data, create the chart, and pass everything to render_template(). Jinja2 then fills the HTML template with real data and returns the complete page.
+
+Q: How do you handle errors — what if someone types a wrong symbol?
+A: I have multiple layers of error handling. First, app.py validates the input — it checks for empty string, length over 20 characters, and invalid characters. If validation passes, stock_data.py calls yfinance and checks if the response has valid price data — if info.get('currentPrice') returns None, it means the symbol doesn't exist and we return a friendly error message. All errors are shown in the UI without any crashes.
+
+Q: What is Jinja2 and how does it work?
+A: Jinja2 is a templating engine built into Flask. It lets me write HTML with Python-like logic inside special tags. Double curly braces {{ data.price }} output a variable's value. Curly-percent {% if data.error %} blocks add conditional logic. When Flask calls render_template('index.html', data=data), Jinja2 processes the template, replaces all placeholders with real values, and returns the final HTML string to the browser.
+
+Advanced / Tricky Questions
+
+Q: What happens if yfinance is slow or the API times out?
+A: Currently the app waits for yfinance to respond. In a production version, I would add a timeout parameter to the request and wrap it in a try-except block that catches connection errors specifically. I'd also add response caching — if the same symbol was searched in the last 5 minutes, return cached data instead of calling the API again. This would make the app faster and more resilient.
+
+Q: How would you scale this if thousands of users use it?
+A: Three main things. First, add caching with Flask-Caching or Redis so repeated searches for popular stocks like TCS.NS don't hit the API every time. Second, replace Flask's development server with Gunicorn — a production WSGI server that can handle multiple concurrent requests using worker processes. Third, add rate limiting to prevent any single user from spamming requests.
+
+Q: What is WSGI and why is it needed for deployment?
+A: WSGI stands for Web Server Gateway Interface — it's a standard protocol that defines how a Python web application communicates with a web server. Flask's built-in development server is single-threaded and not safe for production. Gunicorn is a production WSGI server that runs multiple worker processes, handles concurrent requests, and is much more stable under real traffic. For deployment on Render or Railway, you set the start command to gunicorn app:app.
+
+Q: What are the limitations of this project?
+A: A few honest limitations: yfinance data can sometimes be delayed by 15 minutes for free tier. The app doesn't cache responses so repeated searches hit the API every time. There's no database — no user accounts, watchlists, or saved searches. The app doesn't auto-refresh prices — user has to manually search again. These are all things I'd add in a production version.
+
+6. Project Structure Explained
+
+File	Purpose
+app.py	Flask application — defines routes, handles GET/POST, validates input, calls stock_data functions, renders templates
+stock_data.py	Business logic — fetches data from yfinance, processes with pandas, creates Plotly charts, handles data errors
+templates/index.html	Frontend UI — Jinja2 template with search form, stat cards, chart display, error messages, loading spinner
+requirements.txt	Lists all Python dependencies so anyone can run pip install -r requirements.txt to set up the project
+.gitignore	Tells Git which files to ignore — venv/, __pycache__/, .env so they don't get pushed to GitHub
+assets/preview.png	Screenshot of the app shown in README on GitHub
+README.md	Project documentation — badges, features, setup instructions, tech stack, what was learned
+
+7. What I Learned — Tell This in Interviews
+
+•	How to integrate a real-world financial API (yfinance) and handle missing or inconsistent data safely
+•	How pandas DataFrames work — indexing, column access, rolling window calculations for moving averages
+•	How to build interactive data visualizations with Plotly and embed them in a web page
+•	How Flask routing works — GET vs POST, form handling, Jinja2 template rendering
+•	How to build a full-stack Python web app from scratch — backend logic to frontend UI
+•	Proper error handling — validating user input at multiple layers so the app never crashes
+•	How to write a professional README with badges, screenshots, and setup instructions
+•	Git workflow — init, add, commit, push, handling merge conflicts
+
+8. Stock Symbol Reference
+
+Know these cold for interviews — shows domain knowledge:
+
+Indian Stock (NSE)	Symbol	US Stock
+Tata Consultancy Services	TCS.NS	Apple → AAPL
+Infosys	INFY.NS	Google → GOOGL
+Reliance Industries	RELIANCE.NS	Microsoft → MSFT
+Wipro	WIPRO.NS	Amazon → AMZN
+ICICI Bank	ICICIBANK.NS	Tesla → TSLA
+
+StockLens Interview Guide  |  Built by Ramesh  |  github.com/rameshgehlot76/stock-price-tracker
