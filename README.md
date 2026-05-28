@@ -12,6 +12,12 @@
 
 A clean, production-ready stock market tracker built with Flask and Python. Get real-time prices, interactive 30-day charts, and 7-day moving averages for any Indian or US stock — right in your browser.
 
+## 🌐 Live Demo
+
+👉 **[View Live App →](https://stocklens-qbtn.onrender.com)**
+
+> ⚠️ First load may take 30 seconds — free hosting wakes up on first visit.
+
 ---
 
 ## 🖥️ Preview
