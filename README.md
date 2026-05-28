@@ -1,4 +1,4 @@
-# 📈 StockLens — Real-Time Stock Price Tracker
+| [📈 StockLens](https://github.com/rameshgehlot76/stock-price-tracker) 🌐 [Live](https://stocklens-qbtn.onrender.com) | Real-time stock tracker with interactive charts & moving averages | Python, Flask, yfinance, Plotly, pandas |
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=for-the-badge&logo=flask&logoColor=white)
