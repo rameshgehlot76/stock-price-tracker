@@ -130,7 +130,8 @@ stock-price-tracker/
 
 ---
 
-> ⭐ If you found this useful, consider starring the repo!
+Built with dedication 🚀
 
+> ⭐ If you found this useful, consider starring the repo!
 
 
